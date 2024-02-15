@@ -1,6 +1,7 @@
 blueprint:
   name: Philips RWL021 Remote Control with MQTT
   description: Control Philips Hue lights with the Philips RWL021 remote using MQTT.
+  domain: automation
 
 input:
   mqtt_topic:
