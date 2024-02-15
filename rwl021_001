@@ -1,0 +1,75 @@
+blueprint:
+  name: Philips RWL021 Remote Control with MQTT
+  description: Control Philips Hue lights with the Philips RWL021 remote using MQTT.
+
+input:
+  mqtt_topic:
+    name: MQTT Topic
+    description: "The MQTT topic to subscribe to for button presses."
+    selector:
+      text:
+
+trigger:
+  platform: mqtt
+  topic: !input mqtt_topic
+
+action:
+  - variables:
+      button_id: "{{ trigger.payload }}"
+
+  - choose:
+      - conditions:
+          - "{{ button_id == '1002' }}" # Button 1 (Short press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '2002' }}" # Button 2 (Short press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '3002' }}" # Button 3 (Short press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '4002' }}" # Button 4 (Short press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '1001' }}" # Button 1 (Long press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '2001' }}" # Button 2 (Long press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '3001' }}" # Button 3 (Long press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
+
+      - conditions:
+          - "{{ button_id == '4001' }}" # Button 4 (Long press)
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.YOUR_LIGHT_ENTITY_ID_HERE
